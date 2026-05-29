@@ -2,6 +2,7 @@ import type { Agent } from '../../agent';
 import type { Mastra } from '../../mastra';
 import type { MastraMemory } from '../../memory';
 import type { HarnessStorage } from '../../storage/domains/harness';
+import type { HarnessEventListener } from './events';
 import type { HarnessMode } from './mode';
 
 export interface HarnessConfigCommon<MODES extends HarnessMode[]> {
@@ -62,6 +63,11 @@ export interface HarnessConfigCommon<MODES extends HarnessMode[]> {
    * messages and clone their backing thread content.
    */
   memory: MastraMemory;
+
+  /**
+   * Optional sink invoked for every stamped event before subscribers are notified.
+   */
+  onEvent?: HarnessEventListener;
 
   //   /**
   //    * Maximum number of items allowed to wait in `pendingQueue` per session.
